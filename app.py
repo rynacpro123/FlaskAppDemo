@@ -1,10 +1,10 @@
 from flask import Flask, render_template, url_for
 
-app = Flask(__name__)
+flask_app = Flask(__name__)
 
 
-@app.route('/')
-@app.route('/home')
+@flask_app.route('/')
+@flask_app.route('/home')
 def index():
     return render_template("index.html")
 
@@ -20,4 +20,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run()
+    flask_app.run()
