@@ -20,6 +20,6 @@ def index():
 # def user(name, id):
 #     return "User name: " + name + " - id: " + str(id)
 
-
-if __name__ == "__main__":
-    flask_app.run()
+#
+# if __name__ == "__main__":
+#     flask_app.run()
