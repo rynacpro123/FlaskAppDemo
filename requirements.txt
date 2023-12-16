@@ -11,3 +11,6 @@ werkzeug==3.0.1
 wheel==0.38.4
 slack_sdk
 slack-bolt
+python-dotenv
+langchain
+openai
