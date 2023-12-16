@@ -9,7 +9,7 @@ from dotenv import find_dotenv, load_dotenv
 from functions import draft_email
 
 
-# Load environment variables from .env file
+# Load environment variables from .env file kickddd
 load_dotenv(find_dotenv())
 
 # Set Slack API credentials
