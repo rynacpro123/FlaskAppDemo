@@ -9,13 +9,13 @@ from dotenv import find_dotenv, load_dotenv
 from functions import draft_email
 
 
-# Load environment variables from .env file kickddd
+# Load environment variables from .env file kickdddd
 load_dotenv(find_dotenv())
 
 # Set Slack API credentials
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 SLACK_SIGNING_SECRET = os.environ["SLACK_SIGNING_SECRET"]
-SLACK_BOT_USER_ID = os.environ["SLACK_BOT_USER_ID"]
+SLACK_BOT_USER_ID = os.environ["SLACK_BOT_USER_IDD"]
 
 # Initialize the Slack app
 app = App(token=SLACK_BOT_TOKEN)
