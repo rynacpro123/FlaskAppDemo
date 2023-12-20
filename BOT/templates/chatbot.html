@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Chatbot</title>
+    <title>WINSTON</title>
 
 </head>
 
 <body>
-    <h1>Chat With Me</h1>
+    <h1>Winston framework Test</h1>
     <p><strong>You:</strong>{{ user_input }}</p>
-    <p><strong>Chatbot:</strong>{{ bot_response }}</p>
+    <p><strong>Winston:</strong>{{ bot_response }}</p>
     <form method="post" action="{{ url_for('chatbot') }}">
         <label for="message">Message</label>
         <input type="text" id="message" name="message" required>
