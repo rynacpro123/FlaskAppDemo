@@ -19,7 +19,7 @@ load_dotenv()
 # SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 # SLACK_SIGNING_SECRET = os.environ["SLACK_SIGNING_SECRET"]
 # SLACK_BOT_USER_ID = os.environ["SLACK_BOT_USER_ID"]
-OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+OPENAI_API_KEY = os.environ["OPENAIAPIKEY"]
 
 openai.api_key = OPENAI_API_KEY
 
@@ -28,12 +28,12 @@ openai.api_key = OPENAI_API_KEY
 
 flask_app = Flask(__name__)
 
-MyPracticeKey = os.environ['MyPracticeKey']
+#MyPracticeKey = os.environ['MyPracticeKey']
 
 @flask_app.route('/')
 @flask_app.route('/home')
 def index():
-    return render_template("index.html", MyPracticeKey=MyPracticeKey)
+    return render_template("index.html")
 
 
 # Define the Chatbot route
@@ -56,7 +56,8 @@ def chatbot():
     )
 
     #extract the response text from the OpenAI API result
-    bot_response = response.choice[0].text.strip()
+    bot_response = response.choices[0].text.strip()
+
 
 
     #Add the user input and bot response to the chat history
