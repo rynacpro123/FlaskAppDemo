@@ -7,7 +7,8 @@ from langchain.prompts.chat import (
     HumanMessagePromptTemplate,
 )
 
-load_dotenv(find_dotenv())
+# load_dotenv(find_dotenv())
+load_dotenv()
 
 
 def draft_email(user_input, name="Dave"):
