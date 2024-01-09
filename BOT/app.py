@@ -6,7 +6,7 @@ import openai
 
 
 
-# Load environment variables from .env file (kickd)
+# Load environment variables from .env file (kickdd)
 load_dotenv()
 
 #setOpenAI key
