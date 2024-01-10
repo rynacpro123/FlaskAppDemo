@@ -2,11 +2,13 @@ from flask import Flask, render_template, url_for, request
 import os
 from dotenv import find_dotenv, load_dotenv
 import openai
+import langchain
 
 
 
 
-# Load environment variables from .env file (kickdd)
+
+# Load environment variables from .env file (kickd)
 load_dotenv()
 
 #setOpenAI key
