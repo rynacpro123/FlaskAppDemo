@@ -18,30 +18,29 @@ from dotenv import load_dotenv
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import RetrievalQA
-import backoff
 import openai
 
 
-
+# Load environment variables from .env file forcing .env file variables to override environment variables
 load_dotenv(override=True)
 
 
+#print(os.environ["OPENAI_API_KEY"])
 
 
 
 
-
-# ##---load the document(s). This can be commented out after storage is completed
-# loader = DirectoryLoader("./venv/TrainingDocuments/BhamRealestateMarket", glob="./*.pdf", loader_cls=PyMuPDFLoader)
+# # ##---load the document(s). This can be commented out after storage is completed
+# loader = DirectoryLoader("SourceFiles", glob="./*.pdf", loader_cls=PyMuPDFLoader)
 # documents = loader.load()
 # text_splitter = RecursiveCharacterTextSplitter(chunk_size=512, chunk_overlap=10)
 # texts = text_splitter.split_documents(documents)
-
-#initialize the directory TrainingDocuments location and instanciate an embeddings object
-persist_directory = "./storage"
-embeddings = OpenAIEmbeddings()
-
-
+#
+# #initialize the directory TrainingDocuments location and instanciate an embeddings object
+# persist_directory = "./storage"
+# embeddings = OpenAIEmbeddings()
+#
+#
 # #Create and store the vector database This section can be commented out after storage is completed
 # vectordb = Chroma.from_documents(documents=texts,
 #                                  embedding=embeddings,
@@ -49,6 +48,8 @@ embeddings = OpenAIEmbeddings()
 # vectordb.persist()
 
 #get from disk
+persist_directory = "./storage"
+embeddings = OpenAIEmbeddings()
 vectordb = None
 vectordb = Chroma(persist_directory=persist_directory, embedding_function=embeddings)
 
@@ -73,11 +74,11 @@ qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retrieve
 #         except Exception as err:
 #             print('Exception occurred. Please try again', str(err))
 
-@backoff.on_exception(backoff.expo, openai.error.RateLimitError)
+
 def QueryLLM(query):
     qry = f"###Prompt {query}"
     llm_response = qa(qry)
     return llm_response["result"]
 
 
-#print (QueryLLM("Who is Frederick?"))
+print (QueryLLM("what are large language models?"))
