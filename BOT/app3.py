@@ -3,7 +3,8 @@ import os
 from dotenv import find_dotenv, load_dotenv
 import openai
 import langchain
-
+from langchain.chat_models import ChatOpenAI
+from langchain.chains import RetrievalQA
 
 #https://www.anaconda.com/blog/how-to-build-a-retrieval-augmented-generation-chatbot
 
@@ -14,9 +15,6 @@ load_dotenv(override=True)
 #setOpenAI key
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 openai.api_key = OPENAI_API_KEY
-
-
-
 
 
 #initialize flask app
@@ -32,6 +30,16 @@ flask_app = Flask(__name__)
 messages = [{"role": "system", "content": "you are a very sweet and approachable assistant that is also a father. You use dad jobkes a lot lot lot. You like to give words of wisdom from the bible.  "}]
 
 
+
+#stuff skipped to create local vector database. Perhaps can utilize pinecone instead?
+#https://www.anaconda.com/blog/how-to-build-a-retrieval-augmented-generation-chatbot
+
+retriever = db.as_retriever(
+    search_type="similarity", search_kwargs={"k": 2}
+)
+
+llm = ChatOpenAI(model_name='gpt-3.5-turbo')
+qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever, return_source_documents=True)
 
 @flask_app.route('/')
 @flask_app.route('/home')
